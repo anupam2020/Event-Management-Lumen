@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
@@ -52,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(n.isEmpty() || e.isEmpty() || p.isEmpty())
                 {
-                    Toast.makeText(RegisterActivity.this, "Invalid Input", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Invalid Input!", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -68,19 +70,35 @@ public class RegisterActivity extends AppCompatActivity {
     private void pushToFirebase(String name, String email, String pass)
     {
 
-        firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        firebaseAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if(task.isSuccessful())
                 {
-                    Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
 
                     HashMap<String,String> map=new HashMap<>();
                     map.put("Name",name);
                     map.put("Email",email);
 
-                    dRef.setValue(map);
+                    dRef.push().setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            if(task.isSuccessful())
+                            {
+                                Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(RegisterActivity.this,HomePage.class));
+                                finishAffinity();
+                            }
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
                 }
 

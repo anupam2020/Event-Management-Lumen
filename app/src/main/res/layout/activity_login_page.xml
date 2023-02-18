@@ -18,12 +18,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/loginTIL1"
             android:layout_marginTop="15sp"
+            app:endIconMode="clear_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Email"
+                android:singleLine="true"
                 android:id="@+id/loginEmail"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -34,25 +36,28 @@
             android:id="@+id/loginTIL2"
             android:layout_below="@id/loginTIL1"
             android:layout_marginTop="15sp"
+            app:endIconMode="password_toggle"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Password"
+                android:singleLine="true"
+                android:inputType="textPassword"
                 android:id="@+id/loginPassword"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginBtn"
             android:layout_width="150sp"
             android:layout_height="60dp"
-            android:id="@+id/loginBtn"
-            android:layout_marginTop="15dp"
             android:layout_below="@id/loginTIL2"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
             android:text="Login"
-            android:textSize="18dp"/>
+            android:textSize="18dp" />
 
     </RelativeLayout>
 
