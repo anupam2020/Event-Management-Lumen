@@ -33,6 +33,10 @@
       <label for="event_location">Event Location:</label>
       <input type="text" id="event_location" name="event_location" required>
       <br>
+      <label for="event_type">Event Type:</label>
+      <input type="radio" id="event_type" name="event_location" required>Online
+      <input type="radio" id="event_type" name="event_location" required>Offline
+      <br>
       <input type="submit" value="Register Event">
     </form>
     
