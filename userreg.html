@@ -1,0 +1,46 @@
+<!--Store this code in 'register.html' file inside the 'templates' folder-->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> register </title>
+		<link rel="stylesheet" href="../static/style.css">	
+	</head>
+	<body>
+		<div class="registercontent" align="center">
+			<div class="registertop">
+				<h1>Registration Form</h1>
+			</div></br></br>
+			<div class="registerbottom">
+			<form action="{{ url_for('register')}}" method="post" autocomplete="off">
+			<div class="msg"></div>
+            UserName:  
+			<input type="text" name="username" placeholder="Enter Your Username" class="textbox" id="username" required></br></br>
+            Password:
+			<input type="password" name="password" placeholder="Enter Your Password" class="textbox" id="password" required></br></br>
+            Confirm Pwd:
+            <input type="password" name="password" placeholder="Enter Your Password" class="textbox" id="password" required></br></br>
+            Gender:
+            <input type="radio" name="gender">Male
+            <input type="radio" name="gender">Female</br></br>
+            DOB:
+            <input type="date" name="dob" required></br></br>
+            Email:
+            <input type="email" name="mail" required></br></br>
+            Upload your latest picture:
+            <input type="file" name="userimage" required></br></br>
+            Country:
+            <select name="City">
+                <option>India</option>
+                <option>USA</option>
+                <option>Aus</option>
+                <option>China</option>
+                <option>Brazil</option>
+            </select></br></br>
+			
+			<h3>click<a href="reg.html" target="_blank"><button type="submit" style="background-color:red;color:white">Register</button></a></h3>
+			</form>
+			
+			</div>
+		</div>
+	</body>
+</html>
